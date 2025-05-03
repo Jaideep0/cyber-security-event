@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 55 97% 78%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 55 97% 78%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 336 100% 64%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 183 93% 75%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 55 97% 85%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 183 93% 75%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 0%;
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
+    --ring: 336 100% 64%;
+    --radius: 2rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Use the Comic Neue font variable with multiple fallbacks */
+    font-family: var(--font-comic), "Comic Neue", "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Comic Neue",
+      sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold;
+    /* Ensure headings use the same font family with !important to override any device-specific styling */
+    font-family: var(--font-comic), "Comic Neue", "Comic Sans MS", "Comic Sans", "Chalkboard SE", sans-serif !important;
+  }
+}
+
+.blob {
+  border: 4px solid black;
+  border-radius: var(--radius);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+.blob-primary {
+  @apply bg-primary text-primary-foreground blob;
+}
+
+.blob-secondary {
+  @apply bg-secondary text-secondary-foreground blob;
+}
+
+.blob-accent {
+  @apply bg-accent text-accent-foreground blob;
+}
+
+.blob-muted {
+  @apply bg-muted text-muted-foreground blob;
+}
+
+.hand-drawn {
+  filter: url(#hand-drawn);
+}
+
+.hand-drawn-text {
+  /* Use the Comic Neue font variable with multiple fallbacks */
+  font-family: var(--font-comic), "Comic Neue", "Comic Sans MS", "Comic Sans", "Chalkboard SE", sans-serif !important;
+  letter-spacing: 0.05em;
+  /* Prevent browsers from applying their own font styling */
+  font-style: normal !important;
+}
+
+.nav-item {
+  @apply px-4 py-2 font-bold transition-colors border-2 border-black bg-white hover:bg-primary;
+}
+
+.cartoon-shadow {
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+}
