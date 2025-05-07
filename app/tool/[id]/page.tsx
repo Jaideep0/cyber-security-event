@@ -68,7 +68,7 @@ export default function ToolPage({ params }: ToolPageProps) {
           <h2 className="text-2xl font-bold mb-6 font-comic">TRY IT OUT!</h2>
           <div className="aspect-video bg-white rounded-lg border-4 border-black cartoon-shadow">
             {/* Placeholder for iframe - will be replaced with actual game iframe */}
-            <Sherlock />
+            {tool?.component && <tool.component />}
           </div>
         </div>
 
