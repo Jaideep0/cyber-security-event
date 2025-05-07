@@ -1,6 +1,7 @@
 import Sherlock from '@/components/tools/sherlock';
 import type { Category, Tool } from './types';
 import ExIf from '@/components/tools/exif';
+import PasswordCracker from '@/components/tools/password-cracker';
 
 export const categories: Category[] = [
   {
@@ -74,6 +75,7 @@ export const tools: Tool[] = [
       'Understand what makes a password strong or weak',
       'Learn best practices for password creation',
     ],
+    component: PasswordCracker,
   },
   {
     id: 'sherlock-osint',
