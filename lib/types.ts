@@ -11,7 +11,8 @@ export interface Tool {
   categoryId: string;
   shortDescription: string;
   description: string;
-  setupInstructions: string;
+  setupInstructions?: string;
   learningOutcomes: string[];
   component?: React.ComponentType;
+  link?: string;
 }

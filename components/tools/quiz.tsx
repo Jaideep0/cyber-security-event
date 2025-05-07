@@ -137,7 +137,7 @@ export default function CyberQuizGame() {
         setSelected(null);
         setShowAnswer(false);
       }
-    }, 1000); // wait 1s before showing next
+    }, 2000); // wait 1s before showing next
   };
 
   return (
@@ -183,7 +183,12 @@ export default function CyberQuizGame() {
               {showAnswer && (
                 <p className="text-sm text-muted-foreground">
                   Correct Answer:{' '}
-                  <span className="font-medium text-green-600">
+                  <span
+                    className={cn(
+                      'font-medium text-green-600',
+                      currentQuestion.answer !== selected && 'text-red-600'
+                    )}
+                  >
                     {currentQuestion.answer}
                   </span>
                 </p>

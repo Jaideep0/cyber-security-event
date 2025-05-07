@@ -24,15 +24,15 @@ export default function ToolCard({ tool }: ToolCardProps) {
         </ul>
       </div>
 
-      {!!tool?.component && (
+      {(!!tool?.component || !!tool?.link) && (
         <div className="flex flex-col sm:flex-row gap-4">
-          <Button
+          {/* <Button
             variant="outline"
             asChild
             className="border-2 border-black bg-white hover:bg-primary cartoon-shadow"
           >
             <Link href={`/tool/${tool.id}`}>More Details</Link>
-          </Button>
+          </Button> */}
           <Button
             variant="default"
             asChild

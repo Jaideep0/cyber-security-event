@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiCall = axios.create({
-  baseURL: `${'https://cyber-demo-backend-latest.onrender.com'}/api`,
+  baseURL: `${'http://localhost:8000'}/api`,
   headers: {
     'Content-Type': 'application/json',
   },

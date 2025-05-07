@@ -64,6 +64,12 @@ export const categories: Category[] = [
       'Learn about email security, header analysis, and metadata extraction.',
     disabled: true,
   },
+  {
+    id: 'uwin-subersec',
+    name: 'UWIN CyberSec',
+    description:
+      'Where people come together to connect, learn and dive into the world of cyber security.',
+  },
 ];
 
 export const tools: Tool[] = [
@@ -221,6 +227,51 @@ export const tools: Tool[] = [
     learningOutcomes: [
       'Learn to identify red flags in suspicious emails',
       'Understand how email tracing works',
+    ],
+  },
+  {
+    id: 'jeopardy',
+    name: 'Cybersecurity Jeopardy',
+    categoryId: 'uwin-subersec',
+    shortDescription:
+      'Test your knowledge of basic cybersecurity concepts in a fun and interactive Jeopardy-style game.',
+    description:
+      'Cybersecurity Jeopardy is a game-based activity where participants answer questions across categories like phishing, password security, malware, and basic network threats. The game format encourages engagement while reinforcing key cybersecurity fundamentals.',
+    setupInstructions: '',
+    learningOutcomes: [
+      'Reinforce basic cybersecurity knowledge through gamification',
+      'Improve recognition of common cyber threats and best practices',
+    ],
+    link: 'https://jeopardylabs.com/play/university-of-windsor-cybersecurity-club-jeopardy',
+  },
+  {
+    id: 'kahoot',
+    name: 'Hashing Algorithm Kahoot',
+    categoryId: 'uwin-subersec',
+    shortDescription:
+      'Identify and classify different types of hashes through an engaging quiz format.',
+    description:
+      'This Kahoot activity focuses on understanding cryptographic hashes. Participants will answer multiple-choice questions to identify hash types (MD5, SHA-1, SHA-256, etc.) and their characteristics. Aimed at building foundational knowledge of hashing in cybersecurity.',
+    setupInstructions: '',
+    learningOutcomes: [
+      'Learn to recognize different hash algorithms based on output format and length',
+      'Understand the role of hashes in cybersecurity applications such as integrity verification and password storage',
+    ],
+    component: Quiz,
+  },
+  {
+    id: 'phishing-spotter',
+    name: 'Phishing Email Spotter',
+    categoryId: 'uwin-subersec',
+    shortDescription:
+      'Test your ability to spot phishing emails from a set of real and fake examples.',
+    description:
+      'In this activity, participants are shown a series of email screenshots or samples and must determine whether each one is legitimate or a phishing attempt. The goal is to sharpen skills in identifying common phishing tactics such as spoofed addresses, urgent language, suspicious links, and attachments.',
+    setupInstructions:
+      'Prepare a set of email samples, both real and phishing examples. Display them using slides or a web-based interface.\nAsk participants to vote or select whether each email is "Safe" or "Phishing" and then explain the red flags after each response.',
+    learningOutcomes: [
+      'Develop practical skills in identifying phishing emails',
+      'Recognize common phishing indicators like suspicious links, sender spoofing, and emotional manipulation',
     ],
   },
 ];

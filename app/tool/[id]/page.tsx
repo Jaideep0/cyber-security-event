@@ -68,18 +68,26 @@ export default function ToolPage({ params }: ToolPageProps) {
           <h2 className="text-2xl font-bold mb-6 font-comic">TRY IT OUT!</h2>
           <div className="aspect-video bg-white rounded-lg border-4 border-black cartoon-shadow">
             {/* Placeholder for iframe - will be replaced with actual game iframe */}
-            {tool?.component && <tool.component />}
+            {!!tool?.component && <tool.component />}
+            {tool?.link && (
+              <iframe
+                src={tool.link}
+                title={tool.name}
+                className="w-full h-full rounded-lg"
+                allowFullScreen
+              ></iframe>
+            )}
           </div>
         </div>
 
-        {!!tool.setupInstructions && (
+        {false && !!tool?.setupInstructions && (
           <div className="blob-secondary p-6">
             <h2 className="text-2xl font-bold mb-4 font-comic">
               HOW IT WORKS:
             </h2>
             <div className="prose max-w-none">
               <pre className="bg-white p-4 rounded-lg border-2 border-black cartoon-shadow overflow-x-auto">
-                <code className="font-mono">{tool.setupInstructions}</code>
+                <code className="font-mono">{tool?.setupInstructions}</code>
               </pre>
             </div>
           </div>
