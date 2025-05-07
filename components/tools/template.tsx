@@ -88,7 +88,7 @@ export default function PasswordCracker() {
             </Form>
           </div>
           {/* Display data */}
-          {!!data && <div></div>}
+          {!!data && <div className="mt-4 w-full"></div>}
         </div>
       </ScrollArea>
     </div>

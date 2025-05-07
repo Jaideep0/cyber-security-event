@@ -27,6 +27,7 @@ export const categories: Category[] = [
     name: 'Web Exploitation / Network Security',
     description:
       'Explore vulnerabilities in web applications and network infrastructure in a controlled environment.',
+    disabled: true,
   },
   {
     id: 'digital-forensics',
@@ -39,12 +40,14 @@ export const categories: Category[] = [
     name: 'Network Reconnaissance',
     description:
       'Learn about tools and techniques used to gather information about network infrastructure.',
+    disabled: true,
   },
   {
     id: 'network-scanning',
     name: 'Network Scanning / Visibility',
     description:
       'Explore methods to identify devices and services on a network.',
+    disabled: true,
   },
   {
     id: 'data-hiding',
@@ -57,6 +60,7 @@ export const categories: Category[] = [
     name: 'Email Security / Metadata Forensics',
     description:
       'Learn about email security, header analysis, and metadata extraction.',
+    disabled: true,
   },
 ];
 
