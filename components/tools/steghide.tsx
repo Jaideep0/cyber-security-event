@@ -17,6 +17,13 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
 import { ScrollArea } from '../ui/scroll-area';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 
 const embedSchema = z.object({
   message: z.string().min(1, 'Please enter a message'),
@@ -34,12 +41,20 @@ const extractSchema = z.object({
 type EmbedForm = z.infer<typeof embedSchema>;
 type ExtractForm = z.infer<typeof extractSchema>;
 
+const preUploadedImages = new Array(4)
+  .fill({ name: '', url: '' })
+  .map((item, index) => ({
+    name: `Sample ${index + 1}`,
+    url: `/images/sample-${index + 1}.jpg`,
+  }));
+
 export default function Steghide() {
   const [embedResult, setEmbedResult] = useState<string | null>(null);
   const [extractResult, setExtractResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [coverPreview, setCoverPreview] = useState<string | null>(null);
   const [stegoPreview, setStegoPreview] = useState<string | null>(null);
+  const [preSelectedImage, setPreSelectedImage] = useState<string | null>(null);
 
   const embedForm = useForm<EmbedForm>({
     resolver: zodResolver(embedSchema),
@@ -51,18 +66,40 @@ export default function Steghide() {
     defaultValues: { file: undefined },
   });
 
+  const handlePreSelect = async (url: string) => {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const file = new File([blob], 'preselected.jpg', { type: blob.type });
+
+      setPreSelectedImage(url);
+      embedForm.setValue('file', file);
+      setCoverPreview(url);
+    } catch (error) {
+      toast.error('Failed to load preselected image');
+    }
+  };
+
   const handleEmbed = async (data: EmbedForm) => {
     setLoading(true);
     try {
       const formData = new FormData();
-      formData.append('file', data.file);
+      if (preSelectedImage) {
+        const response = await fetch(preSelectedImage);
+        const blob = await response.blob();
+        const file = new File([blob], 'preselected.jpg', { type: blob.type });
+        formData.append('file', file);
+      } else formData.append('file', data.file);
+
       formData.append('message', data.message);
 
       const res = await apiCall.post('/steg/embed', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
+        responseType: 'blob',
       });
 
-      setEmbedResult(URL.createObjectURL(new Blob([res.data])));
+      const blobUrl = URL.createObjectURL(res.data);
+      setEmbedResult(blobUrl);
       toast.success('Message embedded successfully!');
     } catch (err) {
       toast.error('Failed to embed message.');
@@ -88,14 +125,59 @@ export default function Steghide() {
     setLoading(false);
   };
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <Loader2 className="animate-spin h-8 w-8 text-blue-500" />
+      </div>
+    );
+  }
+
   return (
     <div className="p-4 w-full h-full">
       <ScrollArea className="h-full overflow-y-auto">
-        {loading && (
-          <div className="w-full flex items-center justify-center py-6">
-            <Loader2 className="w-6 h-6 animate-spin" />
+        {embedResult && (
+          <div className="mb-4">
+            <h3 className="font-semibold mb-2">Result Image:</h3>
+            <img
+              src={embedResult}
+              alt="Embedded Result"
+              className="rounded shadow border w-full max-w-sm"
+            />
+            <a
+              href={embedResult}
+              download="stego-image.png"
+              className="inline-block mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+            >
+              Download Image
+            </a>
           </div>
         )}
+        <div className="flex flex-col gap-4 h-full">
+          <p className="text-sm font-semibold">Select a sample image:</p>
+          <div className="px-12">
+            <Carousel opts={{ align: 'start' }} className="w-full">
+              <CarouselContent>
+                {preUploadedImages.map((img, index) => (
+                  <CarouselItem key={index} className="basis-1/3 md:basis-1/4">
+                    <a
+                      onClick={() => handlePreSelect(img.url)}
+                      className="p-1 cursor-pointer"
+                    >
+                      <img
+                        src={img.url}
+                        alt={`Sample ${index + 1}`}
+                        className="rounded w-full h-[75%] object-cover"
+                      />
+                    </a>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Embed Form */}
@@ -154,24 +236,6 @@ export default function Steghide() {
                 </Button>
               </form>
             </Form>
-
-            {embedResult && (
-              <div className="mt-4">
-                <h3 className="font-semibold mb-2">Result Image:</h3>
-                <img
-                  src={embedResult}
-                  alt="Embedded Result"
-                  className="rounded shadow border w-full max-w-sm"
-                />
-                <a
-                  href={embedResult}
-                  download="stego-image.png"
-                  className="inline-block mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-                >
-                  Download Image
-                </a>
-              </div>
-            )}
           </div>
 
           {/* Extract Form */}
