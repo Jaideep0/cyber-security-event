@@ -4,6 +4,8 @@ import ExIf from '@/components/tools/exif';
 import PasswordCracker from '@/components/tools/password-cracker';
 import StegHide from '@/components/tools/steghide';
 import Quiz from '@/components/tools/quiz';
+import GuessEmail from '@/components/tools/guess_email';
+import HashQuiz from '@/components/tools/hash_quiz';
 
 export const categories: Category[] = [
   {
@@ -257,7 +259,7 @@ export const tools: Tool[] = [
       'Learn to recognize different hash algorithms based on output format and length',
       'Understand the role of hashes in cybersecurity applications such as integrity verification and password storage',
     ],
-    component: Quiz,
+    component: HashQuiz,
   },
   {
     id: 'phishing-spotter',
@@ -273,5 +275,6 @@ export const tools: Tool[] = [
       'Develop practical skills in identifying phishing emails',
       'Recognize common phishing indicators like suspicious links, sender spoofing, and emotional manipulation',
     ],
+    component: GuessEmail,
   },
 ];

@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -10,7 +10,8 @@ export default function Footer() {
               <h3 className="text-lg font-bold hand-drawn-text">SWOCTS</h3>
             </div>
             <p className="text-foreground">
-              Connecting students, graduates, and professionals in the cybersecurity industry.
+              Connecting students, graduates, and professionals in the
+              cybersecurity industry.
             </p>
           </div>
 
@@ -20,17 +21,26 @@ export default function Footer() {
             </div>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-foreground hover:text-primary transition-colors font-bold">
+                <Link
+                  href="/"
+                  className="text-foreground hover:text-primary transition-colors font-bold"
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-foreground hover:text-primary transition-colors font-bold">
+                <Link
+                  href="/about"
+                  className="text-foreground hover:text-primary transition-colors font-bold"
+                >
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/#categories" className="text-foreground hover:text-primary transition-colors font-bold">
+                <Link
+                  href="/#categories"
+                  className="text-foreground hover:text-primary transition-colors font-bold"
+                >
                   Categories
                 </Link>
               </li>
@@ -45,18 +55,39 @@ export default function Footer() {
               <p>Open Cyber Sec YQG</p>
               <p>Windsor-Essex, Ontario</p>
               <p className="mt-2">
-                <a href="mailto:info@swocts.ca" className="hover:text-primary transition-colors font-bold">
-                  info@swocts.ca
+                <a
+                  href="mailto:singh5s3@uwindsor.ca"
+                  className="hover:text-primary transition-colors font-bold"
+                >
+                  singh5s3@uwindsor.ca
                 </a>
+                <br />
+                <a
+                  href="mailto:singh8q3@uwindsor.ca"
+                  className="hover:text-primary transition-colors font-bold"
+                >
+                  singh8q3@uwindsor.ca
+                </a>
+                <br />
+                <a
+                  href="mailto:singh3b3@uwindsor.ca"
+                  className="hover:text-primary transition-colors font-bold"
+                >
+                  singh3b3@uwindsor.ca
+                </a>
+                <br />
               </p>
             </address>
           </div>
         </div>
 
         <div className="mt-8 pt-8 border-t-2 border-black text-center text-foreground">
-          <p>&copy; {new Date().getFullYear()} Southwestern Ontario Cyber Talent Showcase. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Southwestern Ontario Cyber Talent
+            Showcase. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }
