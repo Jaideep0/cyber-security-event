@@ -1,36 +1,40 @@
-import { notFound } from "next/navigation"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { ChevronLeft } from "lucide-react"
-import { tools, categories } from "@/lib/data"
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ChevronLeft } from 'lucide-react';
+import { tools, categories } from '@/lib/data';
+import Sherlock from '@/components/tools/sherlock';
 
 interface ToolPageProps {
   params: {
-    id: string
-  }
+    id: string;
+  };
 }
 
 export function generateStaticParams() {
-  return tools.map((tool) => ({
+  return tools.map(tool => ({
     id: tool.id,
-  }))
+  }));
 }
 
 export default function ToolPage({ params }: ToolPageProps) {
-  const tool = tools.find((t) => t.id === params.id)
+  const tool = tools.find(t => t.id === params.id);
 
   if (!tool) {
-    notFound()
+    notFound();
   }
 
-  const category = categories.find((c) => c.id === tool.categoryId)
+  const category = categories.find(c => c.id === tool.categoryId);
 
   return (
     <div className="container mx-auto py-12 px-4 md:py-24">
       <div className="max-w-5xl mx-auto">
         <div className="mb-8">
           <Link href={`/category/${tool.categoryId}`}>
-            <Button variant="outline" className="pl-0 border-2 border-black bg-white hover:bg-primary cartoon-shadow">
+            <Button
+              variant="outline"
+              className="pl-0 border-2 border-black bg-white hover:bg-primary cartoon-shadow"
+            >
               <ChevronLeft className="mr-2 h-4 w-4" />
               Back to {category?.name}
             </Button>
@@ -38,7 +42,9 @@ export default function ToolPage({ params }: ToolPageProps) {
         </div>
 
         <div className="blob-primary p-6 md:p-8 mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold font-comic">{tool.name}</h1>
+          <h1 className="text-3xl md:text-4xl font-bold font-comic">
+            {tool.name}
+          </h1>
         </div>
 
         <div className="blob-secondary p-6 mb-8">
@@ -46,7 +52,9 @@ export default function ToolPage({ params }: ToolPageProps) {
         </div>
 
         <div className="blob-secondary p-6 mb-8">
-          <h2 className="text-2xl font-bold mb-4 font-comic">COOL THINGS YOU'LL LEARN:</h2>
+          <h2 className="text-2xl font-bold mb-4 font-comic">
+            COOL THINGS YOU'LL LEARN:
+          </h2>
           <ul className="list-disc pl-6 space-y-2">
             {tool.learningOutcomes.map((outcome, index) => (
               <li key={index} className="text-lg font-comic">
@@ -58,9 +66,9 @@ export default function ToolPage({ params }: ToolPageProps) {
 
         <div className="blob-primary p-6 mb-8">
           <h2 className="text-2xl font-bold mb-6 font-comic">TRY IT OUT!</h2>
-          <div className="aspect-video bg-white rounded-lg border-4 border-black cartoon-shadow flex items-center justify-center">
+          <div className="aspect-video bg-white rounded-lg border-4 border-black cartoon-shadow">
             {/* Placeholder for iframe - will be replaced with actual game iframe */}
-            <p className="text-muted-foreground text-xl font-bold font-comic">INTERACTIVE GAME LOADS HERE</p>
+            <Sherlock />
           </div>
         </div>
 
@@ -74,5 +82,5 @@ export default function ToolPage({ params }: ToolPageProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
