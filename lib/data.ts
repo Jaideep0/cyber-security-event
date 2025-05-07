@@ -2,6 +2,8 @@ import Sherlock from '@/components/tools/sherlock';
 import type { Category, Tool } from './types';
 import ExIf from '@/components/tools/exif';
 import PasswordCracker from '@/components/tools/password-cracker';
+import StegHide from '@/components/tools/steghide';
+import Quiz from '@/components/tools/quiz';
 
 export const categories: Category[] = [
   {
@@ -105,12 +107,14 @@ export const tools: Tool[] = [
       'Test your knowledge of common cyber attacks in this trivia-style game.',
     description:
       'Gamify cyber incident awareness by presenting attack scenarios. Players must identify the type of exploit from multiple choice options, with optional Red Team vs Blue Team competition.',
-    setupInstructions:
-      'Create a set of scenario cards (e.g., phishing, SQLi, XSS, spoofing)\nAsk participants to guess the exploit type from multiple choice options\nOptionally split into Red Team (attackers) vs Blue Team (defenders)',
+    setupInstructions: true
+      ? ''
+      : 'Create a set of scenario cards (e.g., phishing, SQLi, XSS, spoofing)\nAsk participants to guess the exploit type from multiple choice options\nOptionally split into Red Team (attackers) vs Blue Team (defenders)',
     learningOutcomes: [
       'Increase awareness of common cyber attack vectors',
       'Encourage teamwork and threat classification',
     ],
+    component: Quiz,
   },
   {
     id: 'hack-the-box',
@@ -187,6 +191,7 @@ export const tools: Tool[] = [
       'Understand the concept of steganography',
       'Learn how data hiding can be used in both good and bad contexts',
     ],
+    component: StegHide,
   },
   {
     id: 'creepy',

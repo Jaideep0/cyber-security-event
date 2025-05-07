@@ -72,14 +72,18 @@ export default function ToolPage({ params }: ToolPageProps) {
           </div>
         </div>
 
-        <div className="blob-secondary p-6">
-          <h2 className="text-2xl font-bold mb-4 font-comic">HOW IT WORKS:</h2>
-          <div className="prose max-w-none">
-            <pre className="bg-white p-4 rounded-lg border-2 border-black cartoon-shadow overflow-x-auto">
-              <code className="font-mono">{tool.setupInstructions}</code>
-            </pre>
+        {!!tool.setupInstructions && (
+          <div className="blob-secondary p-6">
+            <h2 className="text-2xl font-bold mb-4 font-comic">
+              HOW IT WORKS:
+            </h2>
+            <div className="prose max-w-none">
+              <pre className="bg-white p-4 rounded-lg border-2 border-black cartoon-shadow overflow-x-auto">
+                <code className="font-mono">{tool.setupInstructions}</code>
+              </pre>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

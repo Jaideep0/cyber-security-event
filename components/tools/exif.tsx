@@ -162,6 +162,7 @@ export default function ExIf() {
                     <Input
                       id="picture"
                       type="file"
+                      accept="image/*"
                       onChange={handleFileChange}
                     />
                   </FormControl>
