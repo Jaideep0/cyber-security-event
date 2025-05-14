@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiCall = axios.create({
-  baseURL: `${process.env.BACKEND_BASE_URL}/api`,
+  baseURL: `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api`,
   headers: {
     'Content-Type': 'application/json',
   },
