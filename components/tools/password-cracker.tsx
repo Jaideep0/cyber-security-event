@@ -63,6 +63,8 @@ export default function PasswordCracker() {
       </div>
     );
 
+  console.log({ backend: process.env.NEXT_PUBLIC_BACKEND_BASE_URL });
+
   return (
     <div className="p-3 h-full w-full rounded">
       <ScrollArea className="h-full overflow-y-auto">
